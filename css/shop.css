@@ -99,6 +99,7 @@ select {
 
 .header-content a {
   text-decoration: none;
+  transition: color ease 0.3s;
 }
 
 .header-content a:hover {
@@ -109,7 +110,12 @@ select {
   display: flex;
 }
 
-.nav a {
+.nav li {
+  display: block;
+  position: relative;
+}
+
+.nav > li > a {
   display: inline-block;
   padding: 2rem;
   color: var(--color-white);
@@ -119,6 +125,45 @@ select {
   font-weight: 700;
   font-size: 1.5rem;
   letter-spacing: 0.11rem;
+}
+
+.nav li:hover .submenu {
+  visibility: visible;
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* Submenu */
+
+.submenu {
+  position: absolute;
+  visibility: hidden;
+  top: 60px;
+  left: 0;
+  min-width: 220px;
+  background: var(--color-white);
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  transition: transform ease 0.4s, opacity ease 0.4s;
+}
+
+.submenu a {
+  display: flex;
+  height: 44px;
+  align-items: center;
+  padding: 0 25px;
+  color: #0009;
+  border-bottom: 1px solid #0000000d;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: color ease 0.3s, background ease 0.3s, padding-left ease 0.3s;
+}
+
+.submenu a:hover {
+  color: var(--color-white);
+  background: var(--primary-color);
+  padding-left: 28px;
 }
 
 .action-wrapper {
@@ -204,6 +249,7 @@ h1.heading {
   font-size: 1.6rem;
   color: #242222b3;
   text-decoration: none;
+  transition: color ease 0.4s;
 }
 
 .menu-categories li a:hover {
@@ -240,6 +286,7 @@ h1.heading {
   font-size: 1.8rem;
   color: #242222;
   font-weight: 500;
+  transition: color ease 0.4s;
 }
 
 .product-item .price {
@@ -317,11 +364,22 @@ h1.heading {
   border: 1px solid #f0f0f3;
 }
 
-.product-cart .cart-thumb {
+.thumb-wrapper {
+  display: block;
+  aspect-ratio: 1.06 / 1;
+  overflow: hidden;
+}
+
+.thumb-wrapper .cart-thumb {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform ease 0.5s;
+}
+
+.product-cart:hover .cart-thumb {
+  transform: scale(1.1);
 }
 
 .product-cart .info {
@@ -348,6 +406,7 @@ h1.heading {
 }
 
 .product-cart .add-btn {
+  position: relative;
   width: 130px;
   height: 40px;
   background-color: var(--primary-color);
@@ -356,6 +415,28 @@ h1.heading {
   border-radius: 20px;
   color: var(--color-white);
   text-transform: uppercase;
+  transition: transform ease-in-out 0.3s;
+}
+
+.product-cart .add-btn::before {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+  z-index: -1;
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, #00000059 0%, #00000000 80%);
+}
+
+.product-cart .add-btn:hover {
+  transform: translateY(-5px);
+}
+
+.product-cart .add-btn:hover:before {
+  opacity: 1;
 }
 
 /* Pagination Bar */
@@ -378,6 +459,7 @@ h1.heading {
   font-size: 2rem;
   color: var(--color-white);
   text-decoration: none;
+  transition: background-color ease-in-out 0.3s;
 }
 
 .pagination-bar li:last-child a {
@@ -449,6 +531,7 @@ h1.heading {
 .footer-wrapper .list a {
   line-height: 30px;
   font-size: 1.5rem;
+  transition: color ease 0.3s;
 }
 
 .footer-wrapper .list a:hover {
@@ -495,6 +578,7 @@ h1.heading {
   background-color: var(--primary-color);
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  transition: color ease 0.4s, background-color ease 0.4s;
 }
 
 .footer-wrapper .subscribe-btn:hover {
